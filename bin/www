@@ -4,6 +4,11 @@
  * Module dependencies.
  */
 
+/**
+ * This file is used as the app entry point. it sets up the "real app" (app.js) that sets up and returns the express() app object.
+ * remainder of the code in this file sets up a node HTTP server with "app" set to a specific port (I defined as 6969) and starts listening and reporting server errors and connections.
+ */
+
 var app = require("../app");
 var debug = require("debug")("create-employee:server");
 var http = require("http");
