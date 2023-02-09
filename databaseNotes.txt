@@ -1,0 +1,51 @@
+Models 
+
+What info about the objects do you need to store
+- will there be multiple copies of an object
+- will there be objects with the same name/attributes
+- sorting 
+
+have separate models for every "object" 
+can use models to represent selection-list options (drop-down list of choices) rather than hard-coding the choices into the website itself 
+
+relationships between models and fields 
+
+UML association diagram shows models we define. 
+- shows the models and relationships between them 
+- shows hardcoded fields. 
+- multiplicities between relationships 
+
+
+MONGOOSE PRIMER 
+
+requires a connection to a MongoDB. You can require() and connect ot a locally hosted database with mongoose.connect() 
+
+~~~
+// Import the mongoose module
+const mongoose = require("mongoose");
+
+// Set `strictQuery: false` to globally opt into filtering by properties that aren't in the schema
+// Included because it removes preparatory warnings for Mongoose 7.
+// See: https://mongoosejs.com/docs/migrating_to_6.html#strictquery-is-removed-and-replaced-by-strict
+mongoose.set('strictQuery', false);
+
+// Define the database URL to connect to.
+const mongoDB = "mongodb://127.0.0.1/my_database";
+
+// Wait for database to connect, logging an error if there is a problem 
+main().catch(err => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+~~~
+
+
+You can get the default Connection boject with 'mongoose.connection' . If you need to create additional connections you can use mongoose.createConnect(). 
+
+DEFINING AND CREATING MODELS 
+models are defined using the 'Schema' interface. 
+Schema allows you to define the fields stored in each documentn along with their validation requirements and default values 
+- you can define static and isntance helper methods to make it easier to work with your data types, and also virutal properties that you can use like any other field, but which aren't actually stored in the database 
+
+Schemas are compiled into models using the 'mongoose.model()' method. 
+- once you have a model you can use it to find, create, update, and delte objects of the given type. 
